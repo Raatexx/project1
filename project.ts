@@ -73,7 +73,7 @@ class Divisao extends Operacoes {
 
 class FactoryMath { // design Pattern -> Fabrica
     
-    public createOpMath(primeiro: number, segundo: number, operacao: string): IOperacao {
+    public static createOpMath(primeiro: number, segundo: number, operacao: string): IOperacao {
         switch (operacao) {
             case "+":
                 return new Soma(primeiro, segundo);
@@ -86,5 +86,28 @@ class FactoryMath { // design Pattern -> Fabrica
         }
 
     }
-
 }
+   
+
+class Calculadora {
+
+    public static calcular(calculo: string): number {
+        let parts = calculo.split(" ");
+        let primeiro = Number(parts[0]);
+        let operacao = parts[1];
+        let segundo = Number(parts[2]);
+        let operacaoMat = FactoryMath.createOpMath(primeiro, segundo, operacao);
+
+        return operacaoMat.calcular();
+}
+}
+
+let numero = "10 / 10";
+let resultado = Calculadora.calcular(numero);
+
+if(resultado >= 0){
+    console.log(`${numero} = ${resultado}`)
+} else {
+    console.log("Operacao Inválida")
+}
+
