@@ -29,26 +29,44 @@ abstract class Operacoes implements IOperacao {
 
     public calcular(): number {
         if(this.validar()){
-            return this.relizarCal();
+            return this.realizarCal();
         } else {
             return -1;
         }   
     }
 
-    protected abstract relizarCal(): number;
+    protected abstract realizarCal(): number;
 }
 
 
 class Soma extends Operacoes {
 
-    protected override relizarCal(): number {
+    protected override realizarCal(): number {
         return this.primeiro + this.segundo;
     }
 }
 
 class Subtracao extends Operacoes {
     
-    protected override relizarCal(): number {
-         return this.primeiro - this.segundo
+    protected override realizarCal(): number {
+        return this.primeiro - this.segundo
+    }
+}
+
+class Multiplicacao extends Operacoes {
+
+    protected override realizarCal(): number {
+        return this.primeiro * this.segundo;
+    }
+}
+
+class Divisao extends Operacoes {
+
+    public override validar(): boolean{
+        return this.primeiro >= 0 && this.segundo > 0  
+    }
+
+    protected override realizarCal(): number {
+        return this.primeiro / this.segundo
     }
 }
