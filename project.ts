@@ -5,18 +5,23 @@ interface IOperacao {
 
 }
 
-abstract class Operacoes implements IOperacao{
+abstract class Operacoes implements IOperacao {
     
-    public _first: number;
-    public _second: number;
+    private _first: number;
+    private _second: number;
 
     constructor(primeiro:number, segundo:number){
         this._first = primeiro;
         this._second = segundo;
     }
-
-   
-
+    
+    get primeiro(){
+        return this._first;
+    }
+    
+    get segundo(){
+        return this._second;
+    }
 
     public validar(): boolean {
         return this._first >= 0 && this._second >= 0
@@ -31,4 +36,12 @@ abstract class Operacoes implements IOperacao{
     }
 
     protected abstract relizarCal(): number;
+}
+
+
+class Soma extends Operacoes {
+
+    protected override relizarCal(): number {
+        return this.primeiro + this.segundo;
+    }
 }
