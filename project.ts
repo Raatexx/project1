@@ -70,3 +70,21 @@ class Divisao extends Operacoes {
         return this.primeiro / this.segundo
     }
 }
+
+class FactoryMath { // design Pattern -> Fabrica
+    
+    public createOpMath(primeiro: number, segundo: number, operacao: string): IOperacao {
+        switch (operacao) {
+            case "+":
+                return new Soma(primeiro, segundo);
+            case "-":
+                return new Subtracao(primeiro, segundo);
+            case "*":
+                return new Multiplicacao(primeiro, segundo);
+            default:
+                return new Divisao(primeiro, segundo);
+        }
+
+    }
+
+}
