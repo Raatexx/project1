@@ -45,3 +45,10 @@ class Soma extends Operacoes {
         return this.primeiro + this.segundo;
     }
 }
+
+class Subtracao extends Operacoes {
+    
+    protected override relizarCal(): number {
+         return this.primeiro - this.segundo
+    }
+}
